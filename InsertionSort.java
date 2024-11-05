@@ -1,37 +1,39 @@
 public class InsertionSort {
-    void sort(int arr[])
-    {
-        int n = arr.length;
-        for (int i = 1; i < n; ++i) {
-            int key = arr[i];
-            int j = i - 1;
-           
-            while (j >= 0 && arr[j] > key) {
-                arr[j + 1] = arr[j];
-                j = j - 1;
+
+    void sort(int array[]) {
+        int length = array.length;
+        
+        // Start from the second element (index 1)
+        for (int currentIndex = 1; currentIndex < length; ++currentIndex) {
+            int currentElement = array[currentIndex]; // The element to be inserted into the sorted portion
+            int comparisonIndex = currentIndex - 1;   // Index to compare against the sorted portion of the array
+            
+            // Move elements of the sorted portion that are greater than currentElement
+            while (comparisonIndex >= 0 && array[comparisonIndex] > currentElement) {
+                array[comparisonIndex + 1] = array[comparisonIndex]; // Shift elements to the right
+                comparisonIndex = comparisonIndex - 1;  // Move to the next element in the sorted portion
             }
-            arr[j + 1] = key;
+            
+            // Insert the currentElement into the correct position
+            array[comparisonIndex + 1] = currentElement;
         }
     }
 
-    static void printArray(int arr[])
-    {
-        int n = arr.length;
-        for (int i = 0; i < n; ++i)
-            System.out.print(arr[i] + " ");
-
-        System.out.println();
+    // Print the elements of the array
+    static void printArray(int array[]) {
+        int length = array.length;
+        for (int i = 0; i < length; ++i) {
+            System.out.print(array[i] + " ");  // Print each element followed by a space
+        }
+        System.out.println();  // Newline after printing all elements
     }
 
-    public static void main(String args[])
-    {
-        int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
-        InsertionSort ob = new InsertionSort();
-        ob.sort(arr);
-
-        printArray(arr);
+    public static void main(String[] args) {
+        int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // Initial sorted array
+        
+        InsertionSort sorter = new InsertionSort();  // Create an object of InsertionSort class
+        sorter.sort(array);  // Sort the array
+        
+        printArray(array);  // Print the sorted array
     }
 }
-
-

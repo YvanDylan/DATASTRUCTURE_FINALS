@@ -1,37 +1,48 @@
-class bubbleSort {    
-    static void bubbleSort(int array[], int n){
-      int firstValue, secondValue, emptyRoom;
-      boolean swapped;
-      for (firstValue = 0; firstValue < n - 1; firstValue++) {
-          swapped = false;
-          for (secondValue = 0; secondValue < n - firstValue - 1; secondValue++) {
-              if (array[secondValue] > array[secondValue + 1]) {                  
-                 
-                emptyRoom = array[secondValue];
-                array[secondValue] = array[secondValue + 1];
-                array[secondValue + 1] = emptyRoom;
-                  swapped = true;
-              }
-          }        
-          if (swapped == false)
-              break;
-      }
-  }
+public class bubbleSort {
 
-  
-  static void printArray(int arr[], int size){
-      int i;
-      for (i = 0; i < size; i++)
-          System.out.print(arr[i] + " ");
-      System.out.println();
-  }
+    // Bubble Sort algorithm
+    static void bubbleSort(int array[], int length) {
+        int currentIndex, nextIndex, temp;
+        boolean isSwapped;
 
+        // Outer loop: iterate through the entire array
+        for (currentIndex = 0; currentIndex < length - 1; currentIndex++) {
+            isSwapped = false;
 
-  public static void main(String args[]){
-      int array[] = {4, 3, 10, 8, 9, 7, 1, 2, 5, 6};
-      int n = array.length;
-      bubbleSort(array, n);
-      System.out.println("Sorted array: ");
-      printArray(array, n);
-  }
+            // Inner loop: compare adjacent elements and swap if needed
+            for (nextIndex = 0; nextIndex < length - currentIndex - 1; nextIndex++) {
+                // If the current element is greater than the next element, swap them
+                if (array[nextIndex] > array[nextIndex + 1]) {
+                    temp = array[nextIndex];
+                    array[nextIndex] = array[nextIndex + 1];
+                    array[nextIndex + 1] = temp;
+
+                    isSwapped = true;
+                }
+            }
+
+            // If no elements were swapped, the array is already sorted
+            if (!isSwapped)
+                break;
+        }
+    }
+
+    // Method to print the array
+    static void printArray(int array[], int size) {
+        for (int i = 0; i < size; i++)
+            System.out.print(array[i] + " ");
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        int array[] = {4, 3, 10, 8, 9, 7, 1, 2, 5, 6};  // Unsorted array
+        int length = array.length;  // Array size
+
+        // Call bubbleSort to sort the array
+        bubbleSort(array, length);
+
+        // Print the sorted array
+        System.out.println("Sorted array: ");
+        printArray(array, length);
+    }
 }
